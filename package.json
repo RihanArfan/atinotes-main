@@ -17,7 +17,7 @@
     "@nuxt/image": "^1.8.1",
     "@nuxt/ui": "^2.18.7",
     "@nuxt/ui-pro": "^1.4.4",
-    "@nuxthub/core": "^0.8.1",
+    "@nuxthub/core": "https://pkg.pr.new/nuxt-hub/core/@nuxthub/core@343",
     "@nuxtjs/mdc": "^0.9.2",
     "@nuxtjs/plausible": "^1.0.3",
     "nuxt": "^3.13.2",
