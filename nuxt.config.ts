@@ -1,11 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-
-  extends: [
-    // https://ui.nuxt.com/pro
-    '@nuxt/ui-pro'
-  ],
-
   modules: [
     '@nuxthub/core',
     '@nuxt/eslint',
@@ -19,6 +13,7 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true
   },
+  css: ['~/assets/css/main.css'],
 
   mdc: {
     highlight: {

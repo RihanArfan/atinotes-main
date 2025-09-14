@@ -1,9 +1,13 @@
-<script setup>
+<script setup lang="ts">
+import type { FormSubmitEvent } from '@nuxt/ui'
+
 const { loggedIn, fetch: refreshSession, clear } = useUserSession()
 const toast = useToast()
 const loginModal = ref(false)
 const logging = ref(false)
-const password = ref('')
+const state = reactive({
+  password: ''
+})
 
 useSeoMeta({
   ogSiteName: 'Atinotes',
@@ -12,88 +16,98 @@ useSeoMeta({
   twitterSite: 'atinux'
 })
 
-async function login() {
-  if (!password.value) return
-  logging.value = true
+async function onSubmit(event: FormSubmitEvent<typeof state>) {
+  if (!event.data.password) return
+
   await $fetch('/api/login', {
     method: 'POST',
-    body: { password: password.value }
+    body: { password: event.data.password }
   })
     .then(async () => {
       await refreshSession()
       loginModal.value = false
+      state.password = ''
     })
     .catch(err => toast.add({
       title: 'Wrong password',
       description: err.data?.message,
-      color: 'red'
+      color: 'error'
     }))
-  password.value = ''
   logging.value = false
 }
 </script>
 
 <template>
-  <Head>
-    <Html lang="en" />
-  </Head>
-  <NuxtLoadingIndicator />
-  <UHeader>
-    <template #logo>
-      Atinotes
-    </template>
-    <template #right>
-      <UColorModeButton />
-      <UButton
-        icon="i-simple-icons-github"
-        to="https://github.com/atinux/atinotes"
-        target="_blank"
-        color="gray"
-        variant="ghost"
-      />
-      <UButton
-        v-if="loggedIn"
-        color="gray"
-        @click="clear"
-      >
-        Logout
-      </UButton>
-      <UButton
-        v-else
-        color="gray"
-        @click="loginModal = true"
-      >
-        Login
-      </UButton>
-    </template>
-  </UHeader>
-  <UMain>
-    <UContainer>
-      <NuxtPage />
-    </UContainer>
-  </UMain>
-  <UModal v-model="loginModal">
-    <UCard>
-      <UForm
-        class="space-y-2"
-        @submit="login"
-      >
-        <UFormGroup label="Password">
-          <UInput
-            v-model="password"
-            type="password"
-            icon="i-heroicons-lock-closed"
-          />
-        </UFormGroup>
+  <UApp>
+    <Head>
+      <Html lang="en" />
+    </Head>
+    <NuxtLoadingIndicator />
+    <UHeader
+      title="Atinotes"
+      :toggle="false"
+    >
+      <template #right>
+        <UColorModeButton />
         <UButton
-          type="submit"
-          :disabled="password.length < 1"
-          :loading="logging"
+          icon="i-simple-icons-github"
+          to="https://github.com/atinux/atinotes"
+          target="_blank"
+          color="neutral"
+          variant="ghost"
+        />
+        <UButton
+          v-if="loggedIn"
+          color="neutral"
+          @click="clear"
+        >
+          Logout
+        </UButton>
+        <UButton
+          v-else
+          color="neutral"
+          @click="loginModal = true"
         >
           Login
         </UButton>
-      </UForm>
-    </UCard>
-  </UModal>
-  <UNotifications />
+      </template>
+    </UHeader>
+    <UMain>
+      <UContainer>
+        <NuxtPage />
+      </UContainer>
+    </UMain>
+
+    <UModal v-model:open="loginModal">
+      <template #content>
+        <UCard>
+          <UForm
+            :state="state"
+            class="space-y-4"
+            @submit="onSubmit"
+          >
+            <UFormField
+              label="Password"
+              name="password"
+            >
+              <UInput
+                v-model="state.password"
+                type="password"
+                icon="i-heroicons-lock-closed"
+                class="w-full"
+              />
+            </UFormField>
+            <UButton
+              type="submit"
+              :disabled="state.password.length < 1"
+              :loading="logging"
+              block
+            >
+              Login
+            </UButton>
+          </UForm>
+        </UCard>
+      </template>
+    </UModal>
+  </UApp>
 </template>
