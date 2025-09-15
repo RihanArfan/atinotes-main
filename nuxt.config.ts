@@ -1,13 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-07-29',
-  future: { compatibilityVersion: 4 },
-
-  extends: [
-    // https://ui.nuxt.com/pro
-    '@nuxt/ui-pro'
-  ],
-
   modules: [
     '@nuxthub/core',
     '@nuxt/eslint',
@@ -18,15 +10,10 @@ export default defineNuxtConfig({
     '@nuxtjs/plausible'
   ],
 
-  routeRules: {
-    // Used for notes.atinux.com
-    // Fell free to remove it
-    '/nuxt-custom-fetch': { redirect: { to: 'https://nuxt.com/docs/guide/recipes/custom-usefetch', statusCode: 302 } }
+  devtools: {
+    enabled: true
   },
-
-  hub: {
-    kv: true
-  },
+  css: ['~/assets/css/main.css'],
 
   mdc: {
     highlight: {
@@ -37,6 +24,18 @@ export default defineNuxtConfig({
     }
   },
 
+  routeRules: {
+    // Used for notes.atinux.com
+    // Fell free to remove it
+    '/nuxt-custom-fetch': { redirect: { to: 'https://nuxt.com/docs/guide/recipes/custom-usefetch', statusCode: 302 } }
+  },
+  future: { compatibilityVersion: 4 },
+  compatibilityDate: '2024-07-29',
+
+  hub: {
+    kv: true
+  },
+
   eslint: {
     config: {
       stylistic: {
@@ -44,9 +43,5 @@ export default defineNuxtConfig({
         commaDangle: 'never'
       }
     }
-  },
-
-  devtools: {
-    enabled: true
   }
 })

@@ -60,7 +60,7 @@ function save() {
         >
           <UButton
             v-if="!editing"
-            color="gray"
+            color="neutral"
             @click="editMode"
           >
             Edit this page
