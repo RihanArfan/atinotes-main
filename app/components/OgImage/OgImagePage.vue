@@ -9,8 +9,6 @@ defineProps({
     required: true
   }
 })
-
-const { host } = useRequestURL()
 </script>
 
 <template>

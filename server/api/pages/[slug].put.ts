@@ -1,3 +1,5 @@
+import { parseMarkdown } from '@nuxtjs/mdc/runtime'
+
 export default eventHandler(async (event) => {
   await requireUserSession(event)
   const { slug } = event.context.params || {}

@@ -48,6 +48,28 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
       :toggle="false"
     >
       <template #right>
+        <UButton
+          v-if="loggedIn"
+          color="neutral"
+          variant="soft"
+          size="sm"
+          @click="clear"
+        >
+          Logout
+        </UButton>
+        <UButton
+          v-else
+          color="neutral"
+          variant="soft"
+          size="sm"
+          @click="loginModal = true"
+        >
+          Login
+        </UButton>
+        <USeparator
+          orientation="vertical"
+          class="mx-3 h-6"
+        />
         <UColorModeButton />
         <UButton
           icon="i-simple-icons-github"
@@ -56,20 +78,6 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
           color="neutral"
           variant="ghost"
         />
-        <UButton
-          v-if="loggedIn"
-          color="neutral"
-          @click="clear"
-        >
-          Logout
-        </UButton>
-        <UButton
-          v-else
-          color="neutral"
-          @click="loginModal = true"
-        >
-          Login
-        </UButton>
       </template>
     </UHeader>
     <UMain>
@@ -87,13 +95,13 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
             @submit="onSubmit"
           >
             <UFormField
-              label="Password"
+              label="Please enter the admin password"
               name="password"
             >
               <UInput
                 v-model="state.password"
                 type="password"
-                icon="i-heroicons-lock-closed"
+                icon="i-lucide-lock"
                 class="w-full"
               />
             </UFormField>
@@ -101,9 +109,10 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
               type="submit"
               :disabled="state.password.length < 1"
               :loading="logging"
+              color="neutral"
               block
             >
-              Login
+              Login to edit
             </UButton>
           </UForm>
         </UCard>

@@ -52,28 +52,32 @@ function save() {
 
 <template>
   <UPage>
-    <template #right>
-      <UContentToc :links="page.parsed?.toc?.links">
-        <template
-          v-if="loggedIn"
-          #bottom
-        >
-          <UButton
-            v-if="!editing"
-            color="neutral"
-            @click="editMode"
-          >
-            Edit this page
-          </UButton>
-        </template>
-      </UContentToc>
+    <template
+      v-if="page.parsed?.toc?.links?.length"
+      #right
+    >
+      <UContentToc :links="page.parsed?.toc?.links" />
     </template>
     <UPageHeader
       v-if="!editing"
       :title="page.parsed?.data?.title"
       :description="page.parsed?.data?.description"
       @dblclick="editMode"
-    />
+    >
+      <template
+        v-if="loggedIn"
+        #links
+      >
+        <UButton
+          color="neutral"
+          icon="i-lucide-pen"
+          variant="soft"
+          label="Edit"
+          size="sm"
+          @click="editMode"
+        />
+      </template>
+    </UPageHeader>
     <UPageBody
       prose
       @dblclick="editMode"

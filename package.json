@@ -12,14 +12,12 @@
   },
   "dependencies": {
     "@iconify-json/simple-icons": "^1.2.52",
-    "@nuxt/content": "^3.7.0",
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/image": "^1.11.0",
-    "@nuxt/ui": "4.0.0-alpha.1",
+    "@nuxt/ui": "^4.0.0-alpha.1",
     "@nuxthub/core": "^0.9.0",
     "@nuxtjs/mdc": "^0.17.4",
     "@nuxtjs/plausible": "^2.0.1",
-    "better-sqlite3": "^12.2.0",
     "nuxt": "^4.1.2",
     "nuxt-auth-utils": "^0.5.24",
     "nuxt-og-image": "5.1.9",
@@ -29,10 +27,11 @@
   "devDependencies": {
     "@nuxt/devtools": "^2.6.3",
     "@nuxt/eslint-config": "^1.9.0",
-    "@types/node": "^24.4.0",
+    "@types/node": "^24.5.0",
     "eslint": "^9.35.0",
     "typescript": "^5.9.2",
-    "vue-tsc": "^3.0.7"
+    "vue-tsc": "^3.0.7",
+    "wrangler": "^4.37.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     '@nuxthub/core',
     '@nuxt/eslint',
     '@nuxt/ui',
-    '@nuxt/content',
+    '@nuxtjs/mdc',
     'nuxt-og-image',
     'nuxt-auth-utils',
     '@nuxtjs/plausible'
@@ -22,6 +22,10 @@ export default defineNuxtConfig({
         dark: 'material-theme-palenight'
       }
     }
+  },
+
+  ui: {
+    content: true
   },
 
   routeRules: {
