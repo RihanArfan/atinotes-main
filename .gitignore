@@ -10,3 +10,4 @@ dist
 data
 .wrangler
 wrangler.toml
+.vercel

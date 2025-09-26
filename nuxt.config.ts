@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    '@nuxthub/core',
+    '@nuxthub/core-nightly', // @nuxthub/core
     '@nuxt/eslint',
     '@nuxt/ui',
     '@nuxtjs/mdc',
@@ -34,7 +34,14 @@ export default defineNuxtConfig({
     '/nuxt-custom-fetch': { redirect: { to: 'https://nuxt.com/docs/guide/recipes/custom-usefetch', statusCode: 302 } }
   },
   future: { compatibilityVersion: 4 },
-  compatibilityDate: '2024-07-29',
+  compatibilityDate: '2025-09-15',
+
+  nitro: {
+    cloudflare: {
+      nodeCompat: true,
+      deployConfig: true
+    }
+  },
 
   hub: {
     kv: true

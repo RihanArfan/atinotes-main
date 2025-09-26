@@ -14,8 +14,8 @@
     "@iconify-json/simple-icons": "^1.2.52",
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/image": "^1.11.0",
-    "@nuxt/ui": "^4.0.0-alpha.1",
-    "@nuxthub/core": "^0.9.0",
+    "@nuxt/ui": "4.0.0-alpha.1",
+    "@nuxthub/core-nightly": "latest",
     "@nuxtjs/mdc": "^0.17.4",
     "@nuxtjs/plausible": "^2.0.1",
     "nuxt": "^4.1.2",
@@ -43,5 +43,15 @@
       "unrs-resolver",
       "vue-demi"
     ]
+  },
+  "cloudflare": {
+    "bindings": {
+      "ADMIN_PASSWORD": {
+        "description": "The password needed to edit notes."
+      },
+      "NUXT_SESSION_PASSWORD": {
+        "description": "Generate a random string at least 32 characters long using `openssl rand -hex 32`."
+      }
+    }
   }
 }
